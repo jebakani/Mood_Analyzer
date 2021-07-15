@@ -52,5 +52,39 @@ namespace MoodAnalyzerTest
             Assert.AreEqual(expected, actual);
 
         }
+        [TestMethod]
+        public void ReturnCustomException()
+        {
+            string expected = "Mood should not be empty";
+            try
+            {
+                string message = "";
+                //act
+                string actual = new MoodAnalyze(message).AnalyseMood();
+            }
+            catch (MoodAnalyserException ex)
+            {
+                //assert
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
+        [TestMethod]
+        public void ReturnMoodShoulNotBeNull()
+        {
+            string expected = "Mood should not be null";
+            try
+            {
+                string message = null;
+                //act
+                string actual = new MoodAnalyze(message).AnalyseMood();
+            }
+            catch (MoodAnalyserException ex)
+            {
+                //assert
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
     }
 }
