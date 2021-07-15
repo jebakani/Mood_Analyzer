@@ -6,9 +6,17 @@ using System.Threading.Tasks;
 
 namespace MoodAnalyzer
 {
+    /// <summary>
+    /// refactoring MoodAnalyze with parameterized constructure
+    /// </summary>
     public class MoodAnalyze
     {
-        public string AnalyseMood(string message)
+        string message;
+       public MoodAnalyze(string message)
+        {
+            this.message = message;
+        }
+        public string AnalyseMood()
         {
             message = message.ToLower();
             if(message.Contains("sad"))
