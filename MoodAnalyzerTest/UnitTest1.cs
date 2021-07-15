@@ -37,5 +37,20 @@ namespace MoodAnalyzerTest
             Assert.AreEqual(expected, actual);
 
         }
+        /// <summary>
+        /// Nulls reference test.
+        /// </summary>
+        [TestMethod]
+        public void NULLReferenceTest()
+        {
+            //assign
+            string expected = "happy";
+            string message = null;
+            //act
+            string actual = new MoodAnalyze(message).AnalyseMood();
+            //assert
+            Assert.AreEqual(expected, actual);
+
+        }
     }
 }
