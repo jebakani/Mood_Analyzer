@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoodAnalyzers
+namespace MoodAnalyzer
 {
-    class MoodAnalyzer
+    public class MoodAnalyze
     {
         public string AnalyseMood(string message)
         {
