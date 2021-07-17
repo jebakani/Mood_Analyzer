@@ -86,5 +86,48 @@ namespace MoodAnalyzerTest
             }
 
         }
+        /// <summary>
+        /// T.C=4.1 Returns the mood analyser object with reflection-> Equal
+        /// </summary>
+        [TestMethod]
+        public void ReturnMoodAnalyserObjectWithReflection()
+        {
+            object expected = new MoodAnalyze();
+            object actual = MoodAnalyserFactory.CreateObjectForMoodAnalyser("MoodAnalyzer.MoodAnalyze", "MoodAnalyze");
+            expected.Equals(actual);
+        }
+        /// <summary>
+        /// T.C-4.2 Returns the mood analyser object with reflection1 -> class nbot found
+        /// </summary>
+        [TestMethod]
+        public void ReturnMoodAnalyserObjectWithReflection1()
+        {
+            string expected = "Class not found";
+            try
+            {
+                object actual = MoodAnalyserFactory.CreateObjectForMoodAnalyser("MoodAnalyzer.MoodAnalyzer", "MoodAnalyzer");
+            }
+            catch(MoodAnalyserException e)
+            {
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
+        /// <summary>
+        /// T.C-4.3 Returns the mood analyser object with reflection1 -> constructor not found
+        /// </summary>
+        [TestMethod]
+        public void ReturnMoodAnalyserObjectWithReflection2()
+        {
+            string expected = "Constructor not found";
+            try
+            {
+                object actual = MoodAnalyserFactory.CreateObjectForMoodAnalyser("MoodAnalyzer.MoodAnalyze", "MoodAnalyzer");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
+
     }
 }
