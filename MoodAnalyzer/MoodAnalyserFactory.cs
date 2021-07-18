@@ -71,6 +71,7 @@ namespace MoodAnalyzer
 
         public static string InvokeMoodAnalyser(string message, string methodName)
         {
+            //create an object using parameterize constructor method and invoke the method 
             try
             {
                 Type type = Type.GetType("MoodAnalyzer.MoodAnalyze");
@@ -79,6 +80,7 @@ namespace MoodAnalyzer
                 object mood = methodInfo.Invoke(moodAnalyseObject,null);
                 return mood.ToString();
             }
+            //if method not found throw method not found exception
             catch(NullReferenceException e)
             {
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_METHOD_FOUND, "No method found");
@@ -86,18 +88,23 @@ namespace MoodAnalyzer
         }
         public static string SetFeild(string message,string fieldName)
         {
+            //change the feild name dynamically
             try
             {
                 MoodAnalyze moodAnalyze = new MoodAnalyze();
                 Type type = typeof(MoodAnalyze);
+                //get the field info 
                 FieldInfo fieldInfo = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
+                //if message is null then throw Null exception in custom exception class
                 if(message==null)
                 {
                     throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_EXCEPTION, "Message should not be null");
                 }
+                //if message not null then set the message to the feild 
                 fieldInfo.SetValue(moodAnalyze, message);
                 return moodAnalyze.message;
             }
+            //if no such field found then throw No field exist exception
             catch(NullReferenceException)
             {
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_FEILD_EXIST, "Field is not found");
