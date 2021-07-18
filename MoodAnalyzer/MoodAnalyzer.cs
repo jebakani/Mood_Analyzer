@@ -11,7 +11,7 @@ namespace MoodAnalyzer
     /// </summary>
     public class MoodAnalyze
     {
-        string message;
+        public string message;
         public MoodAnalyze()
         {
 

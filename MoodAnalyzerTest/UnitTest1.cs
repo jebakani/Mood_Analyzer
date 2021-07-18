@@ -199,5 +199,49 @@ namespace MoodAnalyzerTest
             }
 
         }
+        /// <summary>
+        /// TC-7.1 Changes the message dynamically using reflection.
+        /// </summary>
+        [TestMethod]
+        public void ChangeMessageDynamicallyUsingReflection()
+        {
+            string expected = "Happy";
+            string actual = MoodAnalyserFactory.SetFeild("Happy", "message");
+            expected.Equals(actual);
+        }
+        /// <summary>
+        /// TC-7.2 Changes the message dynamically using reflection.
+        /// </summary>
+        [TestMethod]
+        public void ChangeMessageDynamicallyUsingReflection1()
+        {
+            string expected = "Field is not found";
+            try
+            {
+                string actual = MoodAnalyserFactory.SetFeild("Happy", "msg");
+                expected.Equals(actual);
+            }
+            catch(MoodAnalyserException e)
+            {
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
+        /// <summary>
+         /// TC-7.3 Changes the message dynamically using reflection.
+         /// </summary>
+        [TestMethod]
+        public void ChangeMessageDynamicallyUsingReflection2()
+        {
+            string expected = "Message should not be null";
+            try
+            {
+                string actual = MoodAnalyserFactory.SetFeild(null, "message");
+                expected.Equals(actual);
+            }
+            catch(MoodAnalyserException e)
+            {
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
     }
 }
